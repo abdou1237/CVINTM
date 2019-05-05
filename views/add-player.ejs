@@ -1,0 +1,218 @@
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>INTM GROUPE</title>
+    	<link rel="icon" href="/images/fav.ico">
+        <!-- JqueryUI -->
+        <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.min.css">
+        <!-- Awesome font icons -->
+        <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+        <!-- Magnific popup-->
+        <link rel="stylesheet" type="text/css" href="/css/magnific-popup/magnific-popup.css" media="screen" />
+        <!-- Owlcoursel -->
+        <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.theme.css">
+        <!-- Main style -->
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <!-- Padding / Margin -->
+        <link rel="stylesheet" type="text/css" href="/css/padd-mr.css">
+        <!-- light version-->
+        <link id="vers" rel="stylesheet" type="text/css" href="/css/light-version.css">
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body class="bg-3">
+<!-- Preloader -->
+<div class="preloader">
+    <p></p>
+</div>
+<div id="wrap" class="color1-inher">
+        <% include partials/nav.ejs %>
+    <!-- Main content -->
+    <div id="wrap-body" class="p-t-lg-30">
+        <div class="container">
+            <div class="wrap-body-inner">
+                <!-- Breadcrumb-->
+                <div class="hidden-xs">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="ht-breadcrumb pull-left">
+                                <li class="home-act"><a href="#"><i class="fa fa-home"></i></a></li>
+                                <li class="active">Ajouter un nouveau Profil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/>
+    <div class="container">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                    <h4 class="product-name">INFORMATION PERSONNELLE</h4>
+                    <hr/>
+                    <div class="form-group col-md-6">
+                            <label for="civilite">Sexe</label>
+                            <select name="civilite" id="civilite" value="" class="form-control" >
+                                <option selected disabled>Sexe</option>
+                                <option>Féminin</option>
+                                <option>Masculin</option>
+                                <option>Non précisé</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label for="situation">Etat Civil</label>
+                                <select name="situation" id="situation" value="" class="form-control"  >
+                                    <option selected  disabled>Etat Civil</option>
+                                    <option>Autre</option>
+                                    <option>Célibataire</option>
+                                    <option>Marié(e)</option>
+                                    <option>Divorcé(e)</option>
+                                    <option>Séparé(e)</option>
+                                    <option>Veuf(ve)</option>
+                                </select>
+                            </div>
+                <div class="form-group col-md-4">
+                    <label for="last-name">Nom</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nom" >
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="first-name">Prénom</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Prénom" >
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control" name="age" id="age" placeholder="Age"   >
+                </div>
+            </div>
+                <div class="form-row">
+                <div class="form-group col-md-4">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Email"   >
+                    </div>
+                <div class="form-group col-md-4">
+                        <label for="numtel">Numéro de Téléphone</label>
+                        <input type="text" class="form-control" name="numtel" id="numtel" placeholder="Numéro de Téléphone"  >
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="textprofil">Description</label>
+                        <input type="text"  class="form-control" name="textprofil" id="textprofil" placeholder="Description du Profil" >
+                </div> 
+            </div>
+            
+            <br/><br/><br/><br/>
+            <hr/>
+            <div class="form-row">
+                    <h4 class="product-name">LOCALISATION</h4>
+                    <hr/>
+                <div class="form-group col-md-4">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse"   >
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="ville">Ville</label>
+                        <input type="text" class="form-control" name="ville" id="ville" placeholder="Ville"   >
+                </div>
+                <div class="form-group col-md-4">
+                        <label for="ville">Code Postal</label>
+                        <input type="text" class="form-control" name="codepostal" id="codepostal" placeholder="Code Postal"   >
+                </div>
+                <h4 class="product-name">INFORMATION PROFESSIONNELLE</h4>
+                <hr/>
+                <div class="form-group col-md-6">
+                    <label for="number">Annnée Experience</label>
+                    <input type="number" class="form-control" name="number" id="number"  placeholder="Experience" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="position">Specialité</label>
+                    <select id="position" name="position" class="form-control">
+                        <option></option>
+                        <option>J2EE</option>
+                        <option>PHP</option>
+                        <option>PHYTON</option>
+                        <option>JAVA</option>
+                        <option>ADMINISTRATION RESEAU</option>
+                        <option>HIBERNATE</option>
+                        <option>NODE JS/ VUE JS / REACT JS</option>
+                        <option>LARAVEL</option>
+                        <option>SYMFONY</option>
+                        <option>SPRING</option>
+                    </select>
+                </div>
+            <div class="form-group col-md-4">
+                    <label for="nivetude">Niveau Etude</label>
+                    <input type="text" class="form-control" name="nivetude" id="nivetude" placeholder="Niveau Etude"   >
+                 </div>
+            <div class="form-group col-md-4">
+                    <label for="posteactuel">Poste Actuel</label>
+                    <input type="text" class="form-control" name="posteactuel" id="posteactuel" placeholder="Poste Actuel"  >
+                </div>
+             
+            <div class="form-group col-md-4">
+                    <label for="renumeration">Rémunération</label>
+                    <input type="text" class="form-control" name="renumeration" id="renumeration" placeholder="Rémunération"   >
+                </div>
+                <h4 class="product-name">FICHIERS</h4>
+                <hr/>    
+                <div class="form-group col-md-3">
+                        <label for="player-img"><b>Image du Profil</b></label><br>
+                        <input type="file" name="image" id="image" class="" >
+                    </div>
+                    <div class="form-group col-md-3">
+                            <label for="player-file"><b>Fichier Word</b></label><br>
+                            <input type="file" name="fileWord" id="fileWord" class="">
+                        </div>
+                    <div class="form-group col-md-3">
+                                <label for="player-file"><b>Fichier PDF</b></label><br>
+                                <input type="file" name="filePDF" id="filePDF" class="">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="player-file"><b>Fichier DDC</b></label><br>
+                            <input type="file" name="fileDDC" id="fileDDC" class="">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="player-file"><b>Autres Fichiers1</b></label><br>
+                        <input type="file" name="fichierp" id="fichierp" class="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="player-file"><b>Autres Fichiers2</b></label><br>
+                    <input type="file" name="fichierpl" id="fichierpl" class="">
+            </div>
+            <div class="form-group col-md-4"></div>       
+                <div class="form-group col-md-12">
+
+                    <br/><br/>
+                <button type="submit" class="btn btn-success float-right">Ajouter Profil</button>
+                </div>   
+            </div>
+            
+        </form>
+        <br/><br/><br/>
+    </div>
+</div>
+</div>
+<br/><br/><br/><br/><br/>
+    <% include partials/footer.ejs %>
+    </div></div>
+ <!-- jQuery -->
+ <script src="js/jquery/jquery-2.2.4.min.js"></script>
+ <!-- JqueryUI -->
+ <script src="js/jquery/jquery-ui.js"></script>
+ <!-- Bootstrap -->
+ <script src="js/bootstrap/bootstrap.min.js"></script>
+ <!--magnific popup-->
+ <script src="js/magnific-popup/jquery.magnific-popup.min.js"></script>
+ <!-- Jquery.counterup -->
+ <script src="js/jquery.counterup/waypoints.min.js"></script>
+ <script src="js/jquery.counterup/jquery.counterup.min.js"></script>
+ <!-- Owl-coursel -->
+ <script src="js/owl-coursel/owl.carousel.js"></script>
+ <!-- Script -->
+ <script src="js/script.js"></script>
+
+</body>
+</html>

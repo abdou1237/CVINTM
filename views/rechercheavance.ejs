@@ -1,0 +1,310 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INTM GROUPE</title>
+    <link rel="icon" href="/images/fav.ico">
+    <!-- JqueryUI -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.min.css">
+    <!-- Awesome font icons -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <!-- Magnific popup-->
+    <link rel="stylesheet" type="text/css" href="/css/magnific-popup/magnific-popup.css" media="screen" />
+    <!-- Owlcoursel -->
+    <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.theme.css">
+    <!-- Main style -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- Padding / Margin -->
+    <link rel="stylesheet" type="text/css" href="/css/padd-mr.css">
+    <!-- light version-->
+    <link id="vers" rel="stylesheet" type="text/css" href="/css/light-version.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<style>
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+</style>
+</head>
+<body class="bg-3">
+<!-- Preloader -->
+<div class="preloader">
+<p></p>
+</div>
+<div id="wrap" class="color1-inher">
+    <% include partials/nav.ejs %>
+<!-- Main content -->
+<div id="wrap-body" class="p-t-lg-30">
+    <div class="container">
+        <div class="wrap-body-inner">
+            <!-- Breadcrumb-->
+            <div class="hidden-xs">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="ht-breadcrumb pull-left">
+                            <li class="home-act"><a href="#"><i class="fa fa-home"></i></a></li>
+                            <li class="active">Rechercher</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+<div class="container">
+<% if (message) { %>
+    <p class="text-center text-danger"><%= message %></p>
+<% } %>
+
+<div class="container">
+ 
+        <form class="add-player-form" action="/rechercheavance" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <h4 class="product-name">INFORMATION PERSONNELLE</h4>
+                <hr/>
+            <div class="form-group col-md-4">
+                <label for="last-name">Nom</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Nom">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="first-name">Prénom</label>
+                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Prénom" >
+            </div>
+            <div class="form-group col-md-4">
+                <label for="numtel">Numéro de Téléphone</label>
+                <input type="text" class="form-control" name="numtel" id="numtel" placeholder="Numéro de Téléphone">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Email"  >
+            </div>
+            
+            
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+              <br/>
+                <h4 class="product-name">LOCALISATION</h4>
+                <hr/>
+              </div>
+            </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="adresse">Adresse</label>
+                <input type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse"  >
+            </div>
+        
+        <div class="form-group col-md-4">
+                <label for="ville">Ville</label>
+                <input type="text" class="form-control" name="ville" id="ville" placeholder="Ville"  >
+            </div>
+        <div class="form-group col-md-4">
+                <label for="ville">Code Postal</label>
+                <input type="text" class="form-control" name="codepostal" id="codepostal" placeholder="Code Postal"  >
+        </div>
+        <div class="form-group col-md-4">
+          <label for="ville">Département Code</label>
+          <input type="text" class="form-control" name="cdpostal" id="cdpostal" placeholder="Département Code"  >
+  </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+              <br/>
+                <h4 class="product-name">INFORMATION PROFESSIONNELLE</h4>
+                <hr/>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="number">Année Experience</label>
+                <input type="number" class="form-control" name="number" id="number" placeholder="Année Experience" placeholder="ANNEE EXPERIENCE" >
+            </div>
+            <div class="form-group col-md-4">
+                <label for="renumeration">Rénumération Min</label>
+                <input type="text" class="form-control" name="renumerationmin" id="renumerationmin" placeholder="Rénumération Min"  >
+            </div>
+            <div class="form-group col-md-4">
+                    <label for="renumeration">Rénumération Max</label>
+                    <input type="text" class="form-control" name="renumerationmax" id="renumerationmax" placeholder="Rémunération Max"  >
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="nivetude">Niveau Etude</label>
+                    <input type="text" class="form-control" name="nivetude" id="nivetude" placeholder="Niveau Etude"   >
+                 </div>
+                 <div class="form-group col-md-4">
+                    <label for="posteactuel">Poste Actuel</label>
+                    <input type="text" class="form-control" name="posteactuel" id="posteactuel" placeholder="Poste Actuel"  >
+            </div>
+            <div class="form-group col-md-4">
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+            
+                <label for="position">Spécialité</label>
+                <select id="position" name="position" class="form-control">
+                    <option></option>
+                </select>
+                <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+             <label for="java">
+                <input type="checkbox" name="position" id="position[]" value="java" />JAVA</label>
+              <label for="j2ee">
+                <input type="checkbox" name="position" id="position[]" value="j2ee" />J2EE</label>
+              <label for="hibernate">
+                <input type="checkbox" name="position" id="position[]" value="hibernate" />HIBERNATE</label>
+              <label for="hibernate">
+                <input type="checkbox" name="position" id="position[]" value="hibernate" />SPRING</label>
+              <label for="php">
+                <input type="checkbox" name="position" id="position[]" value="php" />PHP</label>
+              <label for="python">
+                <input type="checkbox" name="position" id="position[]" value="python" />PYTHON</label>
+              <label for="laravel">
+                <input type="checkbox" name="position" id="position[]" value="laravel" />LARAVEL</label>
+              <label for="Symfony">
+                <input type="checkbox" name="position" id="position[]" value="laravel" />SYMFONY</label>
+              <label for="administration reseau">
+                <input type="checkbox" name="position" id="position[]" value="administration reseau" />ADMINISTRATION RESEAU</label>
+              <label for="ANGULAR/ VUE JS / REACT JS">
+                <input type="checkbox" name="position" id="position[]" value="NODE JS/ VUE JS / REACT JS" />ANGULAR/ VUE JS / REACT JS</label>
+              <label for="node js">
+                <input type="checkbox" name="position" id="position[]" value="NODE JS" />NODE JS</label>
+            </div>
+          </div>
+            </div>
+            <!--<select multiple="multiple" data-toggle="select">
+                <option value="1">January</option>
+                <option value="12">December</option>
+            </select>-->
+            
+         
+       
+        
+    
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <br/><br/>
+            <button type="submit" class="btn btn-success float-right">Rechercher</button>
+            </div>   
+        </div>
+        
+        </form>
+        <br/><br/><br/>
+    
+           <br/><br/><br/>
+</div>
+<% if (players.length > 0) {%>
+    <div class="table-wrapper"></div>
+    <table class="table table-hovered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Nom Et Prénom</th>
+                <th scope="col">Spécialité</th>
+                <th scope="col">Experience/An</th>
+                <th scope="col">Utilisateur</th>
+                <th scope="col">File</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+               <!-- <div class="bs-example">
+                        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="">
+                         </div>-->
+                       <!--  <div class="bs-example1"> 
+                        <form action="searchy" method="GET">      
+                         <input type="text" name="typeahead1" id="typeahead1" class="typeahead1 tt-query" autocomplete="off" spellcheck="false" placeholder="">
+                         <br><br> &nbsp;<input type="submit" value="Search" id="button"/>
+                       </form>
+                        </div>-->
+                <% players.forEach((player, index) => { %>
+                <tr>
+                   
+                    <th scope="row"><%= player.id %></th>
+                    <td><img src="/images/<%= player.image %>" style="border-radius: 50% !important; width:40px; height:40px" class="rounded-circle player-img" alt=""></td>
+                    <td><a href="/detailss/<%= player.id %>"><%= player.lastname %> <%= player.firstname %></a></td>
+                    <td><%= player.position %></td>
+                    <td><%= player.experience %></td>
+                    <td><%= user[0].username %></td>
+                    <td><a href="/file/<%= player.fileWord %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></a>
+                    <a href="/file/<%= player.filePDF %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></td>
+                    <td>
+                        <a href="/edit/<%= player.id %>" class="btn btn-sm btn-success">Edit</a>
+                        <a href="/delete/<%= player.id %>" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                    <!--target="_blank" rel="noopener"-->
+                </tr>
+            <% }) }%>
+        </tbody>
+    </table>
+</div>
+
+</div></div>
+<br/><br/><br/><br/><br/>
+
+
+    <% include partials/footer.ejs %>
+</div></div>
+<script type="text/javascript">
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+</script>
+ <!-- jQuery -->
+ <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+ <!-- JqueryUI -->
+ <script src="/js/jquery/jquery-ui.js"></script>
+ <!-- Bootstrap -->
+ <script src="/js/bootstrap/bootstrap.min.js"></script>
+ <!--magnific popup-->
+ <script src="/js/magnific-popup/jquery.magnific-popup.min.js"></script>
+ <!-- Jquery.counterup -->
+ <script src="/js/jquery.counterup/waypoints.min.js"></script>
+ <script src="/js/jquery.counterup/jquery.counterup.min.js"></script>
+ <!-- Owl-coursel -->
+ <script src="/js/owl-coursel/owl.carousel.js"></script>
+ <!-- Script -->
+ <script src="/js/script.js"></script>
+</body>
+</html>

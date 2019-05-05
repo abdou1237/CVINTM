@@ -1,0 +1,282 @@
+
+    <div class="m-b-lg-30">
+        <div class="heading-1">
+            <h3>Spécialité</h3>
+        </div>
+        <p class="m-b-lg-20">DEVELOPPEMNT WEB</p>
+        <div class="row">
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox"  name="options[]" value="J2EE" id="check0">
+                    <label for="check0" class="fa fa-check"></label> JAVA/J2EE
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="spring" id="check1">
+                    <label for="check1" class="fa fa-check"></label> SPRING
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="hibernate" id="check2">
+                    <label for="check2" class="fa fa-check"></label> HIBERNATE
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="php" id="check3">
+                    <label for="check3" class="fa fa-check"></label> PHP
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="html5/css/js" id="check4">
+                    <label for="check4" class="fa fa-check"></label> HTML5/CSS/JS
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="nodejs" id="check5">
+                    <label for="check5" class="fa fa-check"></label> NODE JS
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="angular/react/vue" id="check6">
+                    <label for="check6" class="fa fa-check"></label> ANGULAR/REACT/VUE JS
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value=".net" id="check7">
+                    <label for="check7" class="fa fa-check"></label> .NET
+                </div>
+            </div>
+            <div class="col-lg-4 text-left">
+                <div class="checkbox">
+                    <input type="checkbox" name="options[]" value="python" id="check8">
+                    <label for="check8" class="fa fa-check"></label> PYTHON
+                </div>
+            </div>4
+
+
+
+
+
+
+
+            <head>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <title>BICARA</title>
+                    <link rel="icon" href="favicon.ico">
+                    <!-- JqueryUI -->
+                    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+                    <!-- Bootstrap -->
+                    <link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.min.css">
+                    <!-- Awesome font icons -->
+                    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+                    <!-- Magnific popup-->
+                    <link rel="stylesheet" type="text/css" href="/css/magnific-popup/magnific-popup.css" media="screen" />
+                    <!-- Owlcoursel -->
+                    <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.carousel.css">
+                    <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.theme.css">
+                    <!-- Main style -->
+                    <link rel="stylesheet" type="text/css" href="/css/style.css">
+                    <!-- Padding / Margin -->
+                    <link rel="stylesheet" type="text/css" href="/css/padd-mr.css">
+                    <!-- light version-->
+                    <link id="vers" rel="stylesheet" type="text/css" href="/css/light-version.css">
+                
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            </head>
+            <body class="bg-3">
+            <!-- Preloader -->
+            <div class="preloader">
+                <p></p>
+            </div>
+            <div id="wrap" class="color1-inher">
+                    <% include partials/nav.ejs %>
+                <!-- Main content -->
+                <div id="wrap-body" class="p-t-lg-30">
+                    <div class="container">
+                        <div class="wrap-body-inner">
+                            <!-- Breadcrumb-->
+                            <div class="hidden-xs">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <ul class="ht-breadcrumb pull-left">
+                                            <li class="home-act"><a href="#"><i class="fa fa-home"></i></a></li>
+                                            <li class="active">Modification des informations du Profil</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/>
+            <div class="container">
+                <% if (message) { %>
+                    <p class="text-center text-danger"><%= message %></p>
+                <% } %>
+            
+                <% if (player) { %>
+                    <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+                        <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for="civilite">Sexe</label>
+                                        <select name="civilite" id="civilite" value="<%= player.sexe %>" class="form-control" required>
+                                            <option selected disabled><%= player.civilite %></option>
+                                            <option>Féminin</option>
+                                            <option>Masculin</option>
+                                            <option>Non précisé</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                            <label for="situation">Etat Civil</label>
+                                            <select name="situation" id="situation" value="<%= player.situation %>" class="form-control" required>
+                                                <option selected disabled><%= player.situation %></option>
+                                                <option>Autre</option>
+                                                <option>Célibataire</option>
+                                                <option>Marié(e)</option>
+                                                <option>Divorcé(e)</option>
+                                                <option>Séparé(e)</option>
+                                                <option>Veuf(ve)</option>
+                                            </select>
+                                        </div>
+                            <div class="form-group col-md-4">
+                                <label for="first-name">Prénom</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" value="<%= player.firstname %>" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="last-name">Nom</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" value="<%= player.lastname %>" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="username">Identifiant</label>
+                                <input type="text" class="form-control" name="username" id="username" value="<%= player.username %>" required disabled title="Username can't be changed">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="number">ANNEE EXPERIENCE</label>
+                                <input type="number" class="form-control" name="number" id="number" placeholder="Number" value="<%= player.experience %>" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="position">Specialité</label>
+                                <select id="position" name="position" class="form-control" required>
+                                    <option selected><%= player.position %></option>
+                                    <option>J2EE</option>
+                                    <option>PHP</option>
+                                    <option>PHYTON</option>
+                                    <option>JAVA</option>
+                                    <option>ADMINISTRATION RESEAU</option>
+                                    <option>HIBERNATE</option>
+                                    <option>NODE JS/ VUE JS / REACT JS</option>
+                                    <option>LARAVEL</option>
+                                    <option>SYMFONY</option>
+                                    <option>SPRING</option>
+                                </select>
+                            </div>
+                        <div class="form-group col-md-4">
+                                <label for="adresse">Adresse</label>
+                                <input type="text" class="form-control" name="adresse" id="adresse" placeholder="Adresse" value="<%= player.adresse %>"  required>
+                            </div>
+                        <div class="form-group col-md-4">
+                                <label for="posteactuel">Poste Actuel</label>
+                                <input type="text" class="form-control" name="posteactuel" id="posteactuel" placeholder="Poste Actuel" value="<%= player.posteactuel %>"  required>
+                            </div>
+                        <div class="form-group col-md-4">
+                                <label for="numtel">Numéro de Téléphone</label>
+                                <input type="text" class="form-control" name="numtel" id="numtel" placeholder="Numéro de Téléphone" value="<%= player.numtel %>" required>
+                            </div>  
+                        <div class="form-group col-md-4">
+                                <label for="renumeration">Rémunération</label>
+                                <input type="text" class="form-control" name="renumeration" id="renumeration" placeholder="Rémunération" value="<%= player.renumeration %>"  required>
+                            </div>
+                        <div class="form-group col-md-4">
+                                <label for="ville">Ville</label>
+                                <input type="text" class="form-control" name="ville" id="ville" placeholder="Ville" value="<%= player.ville %>"  required>
+                            </div>
+                        <div class="form-group col-md-4">
+                                <label for="codepostal">Code Postal</label>
+                                <input type="text" class="form-control" name="codepostal" id="codepostal" placeholder="codepostal" value="<%= player.codepostal %>"  required>
+                            </div>    
+                            <div class="form-group col-md-4" style="float: right">
+                                <br/><br/><br/><br/>
+                            <button type="submit" class="btn btn-success float-right">Modifier Client</button>
+                            </div>   
+                        </div>
+                        
+                    </form>
+                    <br/><br/><br/>
+                    
+                        
+                        
+                        <table class="table table-hovered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Ajouté Par</th>
+                                        <th scope="col">Date de création</th>
+                                        <th scope="col">Commentaire</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            
+                    <% for(var i=0; i<(player.comm).length;i++){ %>
+                        <tr>
+                        <td><%= player.comm[i].user %></td>
+                        
+                        <td><%= moment(player.comm[i].createdAt).format('Do MMMM, YYYY') %> <%= moment(player.comm[i].createdAt).format("HH:mm") %></td>
+                        <td>
+                                <form method="POST" action="/updateComment">
+                                <input type="hidden" name="idComment" id="idComment" value="<%=player.comm[i].id %>"/>
+                                <input type="hidden" name="idProfil" id="idComment" value="<%= player.id %>"/>
+                                <input type="text" class="form-control" name="commentaire" id="commentaire" value="<%= player.comm[i].comment %>"/>
+                                <br/>
+                                <button type="submit" class="btn btn-success float-right">Modifier Commentaire</button>  
+                                </form> 
+                            </td>
+                        <td>
+                                <form method="POST" action="/deleteCom">
+                                <input type="hidden" name="idPlayer" id="idPlayer" value="<%= player.id %>"/>
+                                <input type="hidden" name="idComment" id="idComment" value="<%= player.comm[i].id %>"/>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button> 
+                                <!--<a href="/deleteCom/<%= player.comm[i].id %>" class="btn btn-sm btn-danger">Delete</a>-->
+                                </form>
+                            </td>
+                            </tr>
+                               <% } %>
+                                </tbody>
+                                </table>
+                                       
+                            
+                <% } else { %>
+                    
+                    <p class="text-center">Player Not Found. Go <a href="/add">here</a> to add players.</p>
+                <% } %>
+            </div>
+            </div>
+                    </div>
+            
+            <br/><br/><br/><br/><br/>
+                <% include partials/footer.ejs %>
+            </div></div>
+             <!-- jQuery -->
+             <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+             <!-- JqueryUI -->
+             <script src="/js/jquery/jquery-ui.js"></script>
+             <!-- Bootstrap -->
+             <script src="/js/bootstrap/bootstrap.min.js"></script>
+             <!--magnific popup-->
+             <script src="/js/magnific-popup/jquery.magnific-popup.min.js"></script>
+             <!-- Jquery.counterup -->
+             <script src="/js/jquery.counterup/waypoints.min.js"></script>
+             <script src="/js/jquery.counterup/jquery.counterup.min.js"></script>
+             <!-- Owl-coursel -->
+             <script src="/js/owl-coursel/owl.carousel.js"></script>
+             <!-- Script -->
+             <script src="/js/script.js"></script>
+            </body>
+            </html>
