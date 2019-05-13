@@ -850,7 +850,7 @@ a.ht-btn-3x {
 
 .select-wrapper::after {
     content: "\f078";
-    font-family: 'FontAwesome';
+    font-family: Roboto, sans-serif;
     position: absolute;
     font-size: 13px;
     width: 20px;
@@ -1001,7 +1001,7 @@ a.ht-btn-3x {
     padding: 8px 15px;
     top: -81px;
     right: 25px;
-    font-family: FontAwesome;
+    font-family: Roboto, sans-serif;
     text-transform: uppercase;
 }
 
@@ -1678,10 +1678,10 @@ a.ht-btn-3x {
 
 .choose-file-upload {
     color: #555;
+    padding: 6px 10px;
     padding-left: 10px;
     font-weight: normal;
     height: 32px;
-    padding: 6px 10px;
     background: #fff;
     cursor: pointer;
     width: 100%;
