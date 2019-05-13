@@ -17,6 +17,66 @@ module.exports = {
       .then((profil) => res.status(200).send(profil))
       .catch((error) => { res.status(400).send(error); });
   },
+  appOffre(req, res) {
+    return Profil
+    .findAll()
+    .then((options) => {
+      console.log(req.body.value);
+      var vall=(req.body.value).toString();
+      var tabval=vall.split(',');
+      tabval=tabval.map(s => s.trim());
+      console.log(tabval);
+    var profil={},result={};
+    profil=options;
+    console.log("test du count");
+    
+    console.log("j'ai passé le count");
+    var i=0;
+    while(i != options.length){
+      profil[i].number=0;
+    let tabmot=(options[i].motcle).toString(); 
+    tabmot=tabmot.split(',');
+    console.log("1/2");
+    profil[i].tabmotcle=tabmot.map(s=> s.trim());
+    console.log(profil[i].tabmotcle);
+    i++;}
+    console.log("mapping du profil");
+     var tailleprofil=0;
+     var tailleval=tabval.length;
+     console.log(tailleval  + "/" +profil.length);
+     while(tailleprofil != profil.length){
+       var tp=0;
+       console.log("1");
+       console.log(profil[tailleprofil].motcle);
+       //console.log(profil.tabmotcle);
+       //console.log(profil[0].tabmotcle);
+       while(tp != (profil[tailleprofil].tabmotcle).length){
+         //console.log("2");
+         var j=0;
+         while(j!=tailleval && profil[tailleprofil].tabmotcle[tp] != tabval[j])
+           j++;
+        if(j != tabval.length) { profil[tailleprofil].number ++;}
+       tp++;}
+       tailleprofil++;
+       console.log(tailleprofil);
+     }
+     i=0;
+     var tailleresult=0;
+     while(i!=profil.length){
+       console.log("le nombre pour"+ i +"est:"+profil[i].number);
+      if(profil[i].number > 0) {result[tailleresult]= profil[i]; tailleresult++;}
+      i++;
+     }
+     
+     res.render('appeloffre.ejs', {
+      title: "Edit  Player"
+      ,players: result
+      ,taille: tailleresult
+      ,message : ''
+  });
+    })
+    .catch((error) => res.status(400).send(error));
+  },
 
   getById(req, res) {
     return Profil
@@ -102,12 +162,16 @@ module.exports = {
         include: { model: Commentaire, as: 'comm' },
         
       })
-      .then((profil) => {
-        if (!profil) {
+      .then((options) => {
+        if (!options) {
           return res.status(404).send({
             message: 'Profil Not Found',
           });
         } 
+        var profil={};
+        profil=options;
+        let tabmot=(options.motcle).split(',');
+        profil.tabmotcle=tabmot.map(s=> s.trim());
         res.render('detail-profil.ejs', {
             title: "Edit  Player"
             ,player: profil
@@ -217,6 +281,14 @@ module.exports = {
           ,message: ''
       });
   },
+  appelOffrePage(req, res) {
+    res.render('appeloffre.ejs', {
+        title: "Welcome to Socka | Add a new player"
+        ,message: ''
+        ,players:''
+        ,taille :0
+    });
+},
     rechercheavancepage(req, res) {
       res.render('rechercheavance.ejs', {
         title: "Welcome to Socka | Add a new player"
@@ -314,6 +386,7 @@ return Profil.findAll(options)
     if(req.body.position) options.position = sequelize.fn('UPPER',req.body.position);
     if(req.body.textprofil) options.TextProfil =sequelize.fn('lower',req.body.textprofil);
     if(req.body.number) options.experience = req.body.number;
+    if(req.body.motcle) options.motcle=req.body.motcle;
     if(req.session.user[0].username) options.username = sequelize.fn('lower',req.session.user[0].username);
     if(req.body.civilite) options.civilite=req.body.civilite;
     if(req.body.situation) options.situation=req.body.situation;

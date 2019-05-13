@@ -11,7 +11,100 @@ const ejs = require('ejs');
 const passport= require('passport');
 const flash= require('flash');
 var passwordHash= require('password-hash');
+const nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+const dotenv=require('dotenv');
+const schedule = require('node-schedule');
+var gulp = require('gulp');
+var sonarqubeScanner = require('sonarqube-scanner');
 
+dotenv.config();
+const Profil = require('./models').profil;
+const Email = require('./models').email;
+
+gulp.task('default', function(callback) {
+  sonarqubeScanner({
+    serverUrl : "localhost:9000",
+    token : "0d9170784cb59e155fff0cad0b676163901c0af7",
+    options : {
+      "sonar.organization": "my-org"
+    }
+  }, callback);
+});
+
+
+var date = new Date(2019, 4, 12, 12, 58, 0);
+ 
+var j = schedule.scheduleJob(date, function(){
+  var today = new Date();
+  console.log(today);
+   var dd = String(today.getDate()+2).padStart(2, '0');
+   var mm = String(today.getMonth()+1).padStart(2, '0'); //January is 0!
+   var yyyy = today.getFullYear();
+
+today =yyyy + '-' + mm + '-' + dd;
+  console.log(today);
+    return Email
+      .findAll({
+        where: {
+            Datee: today
+        }
+       })
+      .then((email) =>{
+        
+          console.log(email.length);
+          var i=0;
+          while(i!=email.length){
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED
+            console.log(process.env.NODE_TLS_REJECT_UNAUTHORIZED);
+            
+            var AppConfig = {
+              'sendEmailID': 'abdouhatty1@gmail.com',
+              'sendEmailFromName': 'abdouhatty1@gmail.com',
+              'sendEmailPassword': 'velomoteur'
+              }
+              var transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                host: 'smtp.gmail.com',
+                port: '587',
+                auth: {
+                    user: "abdellah.hatimy@gmail.com",
+                    pass: "Velomoteur1!"
+                },
+                secureConnection: 'false',
+                tls: {
+                    ciphers: 'SSLv3'
+                },
+                
+            });
+            
+            // setup e-mail data with unicode symbols 
+            var mailOptions = {
+                from: AppConfig.sendEmailFromName, // sender address 
+                to: email[i].to, // list of receivers 
+                subject: email[i].subject, // Subject line 
+                html: email[i].body+"<br/> Le nom et Prénom de la personne:"+email[i].nom+ ' '+ email[i].prenom // html body 
+            };
+            
+            // send mail with defined transport object 
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    return console.log("ERROR----" + error);
+                }
+                console.log('Message sent: ' + info.response);
+            });
+            i++;
+          }
+        
+        console.log(email);
+         
+
+      })
+      
+  
+});
+
+dotenv.config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -63,6 +156,68 @@ app.use('/users', usersRouter);
 /*app.use(function(req, res, next) {
   next(createError(404));
 });*/
+
+app.post('/send-email', function (req, res) {
+  console.log("1");
+      return Email
+      .create({
+        subject:req.body.subject,
+        to:req.body.to,
+        body:req.body.body,
+        Date:'test',
+        heure:'test',
+        envoie:'0',
+        nom:req.body.lastnme,
+        prenom:req.body.firstnme,
+        numtel: req.body.numtel,
+        Datee:req.body.datee
+      }).then(()=>{
+        console.log("2");
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED
+  console.log(process.env.NODE_TLS_REJECT_UNAUTHORIZED);
+  
+  var AppConfig = {
+    'sendEmailID': 'abdouhatty1@gmail.com',
+    'sendEmailFromName': 'abdouhatty1@gmail.com',
+    'sendEmailPassword': 'velomoteur'
+    }
+    res.redirect('detailss/'+ req.body.playerid);
+    var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      host: 'smtp.gmail.com',
+      port: '587',
+      auth: {
+          user: "abdellah.hatimy@gmail.com",
+          pass: "Velomoteur1!"
+      },
+      secureConnection: 'false',
+      tls: {
+          ciphers: 'SSLv3'
+      },
+      
+  });
+  
+  // setup e-mail data with unicode symbols 
+  var mailOptions = {
+      from: AppConfig.sendEmailFromName, // sender address 
+      to: req.body.to, // list of receivers 
+      subject: req.body.subject, // Subject line 
+      html: req.body.body // html body 
+  };
+  
+  // send mail with defined transport object 
+  transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+          return console.log("ERROR----" + error);
+      }
+      console.log('Message sent: ' + info.response);
+  });
+    }).catch((error) => res.status(400).send(error));
+  //console.log("HELLLO");
+  
+    
+  });
+
 
 // error handler
 app.use(function(err, req, res, next) {

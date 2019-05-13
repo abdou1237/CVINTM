@@ -83,6 +83,9 @@ module.exports = {
       appeler: {
         type: Sequelize.STRING
       },
+      motcle: {
+        type: Sequelize.STRING
+      },
       nbreappeler: {
         type: Sequelize.INTEGER
       },

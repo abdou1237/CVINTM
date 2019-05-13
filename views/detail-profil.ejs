@@ -148,6 +148,9 @@
                                                 <p>Code Postal :&nbsp;&nbsp;<strong><%= player.codepostal %></strong> </p>
                                                 <p>Numéro de Téléphone :&nbsp;&nbsp;<strong><%= player.numtel %></strong> </p>
                                                 <p>Email :&nbsp;&nbsp;<strong><%= player.email %></strong> </p>
+                                                <% (player.tabmotcle).forEach((motcle, index) => { %>
+                                                <p>Mot Clé: &nbsp;&nbsp; <strong><%= motcle %></strong></p>
+                                                <% }) %>
 												<hr/>
 												
                                             </div>
@@ -155,7 +158,7 @@
                                                     <h4 class="product-name">FICHIERS</h4>
                                                     <hr/>
                                                         <%  if(player.fileWord) { %>
-                                                    <p>CV sous Format WORD:&nbsp;&nbsp;<strong><a href="/file/<%= player.fileWord %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></strong></p>
+                                                    <p>CV sous Format WORD:&nbsp;&nbsp;<strong><a href="/file/<%= player.fileWord %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""></a><img style="width:40px; height: 40px" src="/images/word.png"/></strong></p>
                                                         <% }if(player.filePDF){ %>
                                                     <p>CV sous Format PDF :&nbsp;&nbsp;<strong><a href="/file/<%= player.filePDF %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></strong></p>
                                                         <% } %>
@@ -215,15 +218,17 @@
 										<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description Profil</a></li>
                                         <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Commentaire</a></li>
                                         <li role="presentation"><a href="#intm" aria-controls="intm" role="tab" data-toggle="tab">Relation INTM</a></li>
+                                        <li role="presentation"><a href="#email" aria-controls="email" role="tab" data-toggle="tab">Email</a></li>
 									</ul>
 									<!-- Tab panes -->
 									<div class="tab-content bg-gray-fa bg1-gray-15 p-lg-30 p-xs-15">
-										<!-- Tab panes item -->
+                                        <!-- Tab panes item -->
+                            
 										<div role="tabpanel" class="tab-pane active" id="home">
 											<div class="txt">
 												<p><%= player.TextProfil %></p>
 											</div>
-										</div>
+                                        </div>
 										<div role="tabpanel" class="tab-pane" id="intm">
                                                 <form method="POST" action="/addRelation">
                                                 <div class="txt" style="align-content: center; text-align:center">
@@ -293,6 +298,54 @@
                                                             </form>
                                         
                                         </div>
+                                        <div role="tabpanel" class="tab-pane" id="email">
+                                            <section>
+											<div class="contact-form p-lg-30 p-xs-15 bg-gray-fa bg1-gray-2">
+                                                <form action="/send-email" method="post">
+                                                    <div class="row">
+                                                      <div class="col-md-4"></div>
+                                                      <div class="form-group col-md-4">
+                                                        <label for="to">To:</label>
+                                                        <input type="email" class="form-control" name="to">
+                                                        <input type="hidden" class="form-control" name="playerid" value="<%=player.id %>">
+                                                        <input type="hidden" class="form-control" name="lastnme" value="<%=player.lastname %>">
+                                                        <input type="hidden" class="form-control" name="firstnme" value="<%=player.firstname %>">
+                                                        <input type="hidden" class="form-control" name="numtel" value="<%=player.numtel %>">
+                                                      </div>
+                                                    </div>
+                                            
+                                                    <div class="row">
+                                                      <div class="col-md-4"></div>
+                                                      <div class="form-group col-md-4">
+                                                        <label for="subject">Subject:</label>
+                                                        <input type="text" class="form-control" name="subject">
+                                                      </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4"></div>
+                                                        <div class="form-group col-md-4">
+                                                          <label for="subject">Date:</label>
+                                                          <input type="date" class="form-control" name="datee">
+                                                        </div>
+                                                      </div>
+                                            
+                                                    <div class="row">
+                                                      <div class="col-md-4"></div>
+                                                        <div class="form-group col-md-4">
+                                                          <label for="body">Body:</label>
+                                                          <textarea cols="5" rows="5"class="form-control" name="body"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                      <div class="col-md-4"></div>
+                                                      <div class="form-group col-md-4">
+                                                        <button type="submit" class="btn btn-success">Send</button>
+                                                      </div>
+                                                    </div>
+                                                  </form>
+                                            </div>
+                                            </section>
+										</div>
 										<div role="tabpanel" class="tab-pane" id="settings">.4..</div>
 									</div>
 								</div>

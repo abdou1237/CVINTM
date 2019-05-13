@@ -6,10 +6,13 @@ const profilController = require('../controllers').profil;
 const accountController = require('../controllers').account;
 const commentaireController= require('../controllers').commentaire;
 const auth=require('../controllers').authentication;
+const email=require('../controllers').email;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login_1.ejs', { title: 'Express' });
+  //login_1.ejs
+  //email.ejs
 });
 
 router.get('/testrenum',profilController.testrenum);
@@ -21,6 +24,8 @@ router.get('/delete/:id', profilController.delete);
 router.get('/home', profilController.getHomeePage);
 router.get('/homee', profilController.getHomePage);
 router.get('/add', profilController.addPlayerPage);
+router.get('/appoffre', profilController.appelOffrePage);
+router.post('/appoffre',profilController.appOffre);
 router.post('/add', profilController.addPlayer);
 router.get('/detailss/:id',profilController.DetailsPlayer);
 router.post('/rechercheavance',profilController.rechercheavance);

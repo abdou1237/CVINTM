@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     cdpostal:DataTypes.INTEGER,
     age:DataTypes.INTEGER,
     email:DataTypes.STRING,
-    nivetude:DataTypes.STRING
+    nivetude:DataTypes.STRING,
+    motcle:DataTypes.STRING
   }, {});
   profil.associate = function(models) {
     // associations can be defined here

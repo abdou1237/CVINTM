@@ -121,10 +121,7 @@ module.exports = {
               req.session.user = accounts;
               req.session.user.logged=true
               //res.status(200).send("GOOD");
-             res.render('accueil', {
-                title: "Welcome to Socka | View Players"
-                ,user: req.session.user
-            });
+             res.redirect('/homee');
     
             } else {
     
