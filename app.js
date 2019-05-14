@@ -17,11 +17,35 @@ const dotenv=require('dotenv');
 const schedule = require('node-schedule');
 var gulp = require('gulp');
 var sonarqubeScanner = require('sonarqube-scanner');
+var morgan = require('morgan');
 
 dotenv.config();
 const Profil = require('./models').profil;
 const Email = require('./models').email;
 
+//CONFIGURATION DE UIPATH
+/*var util = require('util');
+var Orchestrator = require('uipath-orchestrator');
+var orchestrator = new Orchestrator({
+     tenancyName: 'test',           // The Orchestrator Tenancy
+     usernameOrEmailAddress: 'xxx',// The Orchestrator login
+     password: 'yyy',               // The Orchestrator password
+     hostname: 'host.company.com', // The instance hostname
+     isSecure: true,                // optional (defaults to true)
+     port: 443, // optional (defaults to 80 or 443 based on isSecure)
+     invalidCertificate: false, // optional (defaults to false)
+     connectionPool: 5 // options, 0=unlimited (defaults to 1)
+});
+var apiPath = '/odata/Users';
+var apiQuery = {};
+orchestrator.get(apiPath, apiQuery, function (err, data) {
+    if (err) {
+        console.error('Error: ' + err);
+    }
+    console.log('Data: ' + util.inspect(data));
+});
+*/
+//CONFIGURATION DE SONARQUBE
 gulp.task('default', function(callback) {
   sonarqubeScanner({
     serverUrl : "localhost:9000",
@@ -32,7 +56,7 @@ gulp.task('default', function(callback) {
   }, callback);
 });
 
-
+//CONFIGURATION PARTIE EMAIL DANS UNE DATE X
 var date = new Date(2019, 4, 12, 12, 58, 0);
  
 var j = schedule.scheduleJob(date, function(){
@@ -110,14 +134,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-var callback = passport.authenticate('node-sequelize', { failureRedirect: '/error' });  
+/*var callback = passport.authenticate('node-sequelize', { failureRedirect: '/error' });  
 
 var successLoginRedirect = function (req, res) {
   User.findById(req.user._id);
 
   var redirectionUrl = req.session.redirectUrl || '/auth';
   res.redirect(redirectionUrl);
-};  
+};*/  
 
 // view engine setup
 /*app.set('views', path.join(__dirname, 'views'));
@@ -125,6 +149,8 @@ app.set('view engine', 'ejs');*/
 
 app.set('views', __dirname + '/views'); // set express to look in this folder to render our view
 app.set('view engine', 'ejs'); // configure template engine
+app.set('trust proxy',1);
+app.use(morgan('dev'));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -134,10 +160,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
 app.use(fileUpload()); // configure fileupload
+
 app.use(session({
 	secret: 'aq8754hbjde45654de',
 	resave: false,
-	saveUninitialized: true
+  saveUninitialized: true,
 }));
 app.use(function(req, res, next) {
   res.locals.user = req.session.user;

@@ -120,6 +120,7 @@ module.exports = {
     
               req.session.user = accounts;
               req.session.user.logged=true
+              console.log("gggggggggggggggggggggggggggggggggggggggggg"+req.session.user[0].username);
               //res.status(200).send("GOOD");
              res.redirect('/homee');
     
@@ -164,7 +165,9 @@ contactPage (req, res){
 },
   
   deconnexion(req, res) {
-   req.session.destroy();
-   res.redirect('/');
+    req.session.destroy(function(err) {
+      // cannot access session here
+      res.redirect('/');
+    })
   },
 };
