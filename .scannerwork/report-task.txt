@@ -2,5 +2,5 @@ projectKey=node-sequelize
 serverUrl=http://localhost:9000
 serverVersion=7.4.0.18908
 dashboardUrl=http://localhost:9000/dashboard?id=node-sequelize
-ceTaskId=AWq1X04pfrPfbO-ipeCH
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWq1X04pfrPfbO-ipeCH
+ceTaskId=AWq_2fIxotb-9xMIf3Bq
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWq_2fIxotb-9xMIf3Bq

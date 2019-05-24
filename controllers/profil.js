@@ -181,11 +181,9 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
 },
   
-
   delete(req, res) {
     return Profil
       .findByPk(req.params.id)
-
       .then(profil => {
         if (!profil) {
           return res.status(400).send({
@@ -193,7 +191,6 @@ module.exports = {
           });
         }
         return profil
-          
           .destroy()
           .then(() => res.redirect('/homee'))
           .catch((error) => res.status(400).send(error));

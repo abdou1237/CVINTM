@@ -18,6 +18,8 @@ const schedule = require('node-schedule');
 var gulp = require('gulp');
 var sonarqubeScanner = require('sonarqube-scanner');
 var morgan = require('morgan');
+var languageTranslator = require ('language-translator');
+
 
 dotenv.config();
 const Profil = require('./models').profil;
@@ -160,7 +162,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
 app.use(fileUpload()); // configure fileupload
-
+app.use(languageTranslator(
+  {
+    langs          : ["tr", "en", "fr", "de","nl", "es"], // ... And other languages
+    defaultLang    : "fr",
+    translationApiKey: "trnsl.1.1.20190516T095759Z.af07da9598ff9e09.de07c4a401d4c8a9013c632867b71769f24f1066"
+}));
 app.use(session({
 	secret: 'aq8754hbjde45654de',
 	resave: false,
@@ -186,11 +193,12 @@ app.use('/users', usersRouter);
 
 app.post('/send-email', function (req, res) {
   console.log("1");
+  let tpoo=req.body.body+"<br/> Le nom et Prénom de la personne:"+req.body.lastnme+ ' '+ req.body.firstnme;
       return Email
       .create({
         subject:req.body.subject,
         to:req.body.to,
-        body:req.body.body,
+        body: req.body.body , 
         Date:'test',
         heure:'test',
         envoie:'0',
@@ -199,7 +207,7 @@ app.post('/send-email', function (req, res) {
         numtel: req.body.numtel,
         Datee:req.body.datee
       }).then(()=>{
-        console.log("2");
+        console.log(req.body.lastnme);
         process.env.NODE_TLS_REJECT_UNAUTHORIZED
   console.log(process.env.NODE_TLS_REJECT_UNAUTHORIZED);
   
@@ -229,7 +237,7 @@ app.post('/send-email', function (req, res) {
       from: AppConfig.sendEmailFromName, // sender address 
       to: req.body.to, // list of receivers 
       subject: req.body.subject, // Subject line 
-      html: req.body.body // html body 
+      html: tpoo // html body 
   };
   
   // send mail with defined transport object 

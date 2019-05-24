@@ -1,4 +1,5 @@
 const Accounts = require('../models').accounts;
+const Demandeur =require('../models').Demandeur;
 var passwordHash= require('password-hash');
 var fs=require('fs');
 var PDFParser=require('pdf2json');
@@ -59,6 +60,7 @@ module.exports = {
         username: req.body.username,
         password: hashedPassword,
         email: req.body.email,
+        etat: 1,
         isAdmin: true,
       })
       .then((accounts) => res.redirect('/'))
@@ -112,7 +114,14 @@ module.exports = {
        })
        .then((accounts) => {
           if (!accounts) {
-        res.redirect('/');
+         /*   console.log("0000000");
+          return Demandeur.findAll({where:{email:req.body.username, password:req.body.password}})
+          .then((demandeur)=>{
+            if(!demandeur) { console.log("1111111"); res.redirect('/');}
+            else {  res.redirect('/home')}
+          })
+          .catch((error)=> res.status(400).send(error));*/
+        
            }else{
            var result=passwordHash.verify(req.body.password, accounts[0].password) 
             // console.log(result+ " "+ req.body.password+ " "+ accounts[0].password);
@@ -120,9 +129,14 @@ module.exports = {
     
               req.session.user = accounts;
               req.session.user.logged=true
-              console.log("gggggggggggggggggggggggggggggggggggggggggg"+req.session.user[0].username);
+              if(accounts[0].etat == 0){
+                res.redirect('/homee');
+              }else{
+                res.redirect('/home');
+              }
+              
               //res.status(200).send("GOOD");
-             res.redirect('/homee');
+             
     
             } else {
     
@@ -157,8 +171,22 @@ proposPage (req, res){
   });
 },
 
+proposPageDemandeur (req, res){
+  res.render('aboutdemandeur.ejs', {
+      title: "Welcome to Socka | Add a new player"
+      ,message: ''
+  });
+},
+
 contactPage (req, res){
   res.render('contact.ejs', {
+      title: "Welcome to Socka | Add a new player"
+      ,message: ''
+  });
+},
+
+contactPageDemandeur (req, res){
+  res.render('contactdemandeur.ejs', {
       title: "Welcome to Socka | Add a new player"
       ,message: ''
   });

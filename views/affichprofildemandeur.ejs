@@ -1,0 +1,242 @@
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>INTM GROUPE</title>
+    	<link rel="icon" href="/images/fav.ico">
+        <!-- JqueryUI -->
+        <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.min.css">
+        <!-- Awesome font icons -->
+        <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+        <!-- Magnific popup-->
+        <link rel="stylesheet" type="text/css" href="/css/magnific-popup/magnific-popup.css" media="screen" />
+        <!-- Owlcoursel -->
+        <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="/css/owl-coursel/owl.theme.css">
+        <!-- Main style -->
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <!-- Padding / Margin -->
+        <link rel="stylesheet" type="text/css" href="/css/padd-mr.css">
+        <!-- light version-->
+        <link id="vers" rel="stylesheet" type="text/css" href="/css/light-version.css">
+        <style>
+                input[type=text], select {
+                  width: 100%;
+                  padding: 12px 20px;
+                  margin: 8px 0;
+                  display: inline-block;
+                  border: 1px solid #ccc;
+                  border-radius: 4px;
+                  box-sizing: border-box;
+                }
+                
+                input[type=submit] {
+                  width: 100%;
+                  background-color: #4CAF50;
+                  color: white;
+                  padding: 14px 20px;
+                  margin: 8px 0;
+                  border: none;
+                  border-radius: 4px;
+                  cursor: pointer;
+                }
+                
+                input[type=submit]:hover {
+                  background-color: #45a049;
+                }
+                
+               
+                </style>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+</head>
+<body class="bg-3">
+	<!-- Preloader -->
+	<div class="preloader">
+		<p></p>
+	</div>
+	<div id="wrap" class="color1-inher">
+        
+            <% include partials/navdemandeur.ejs %>
+            <%if (player) { %>
+		<!-- Main content -->
+		<div id="wrap-body" class="p-t-lg-30">
+			<div class="container">
+				<div class="wrap-body-inner">
+					<!-- Breadcrumb-->
+					<div class="hidden-xs">
+						<div class="row">
+							<div class="col-lg-6">
+								<ul class="ht-breadcrumb pull-left">
+									<li class="home-act"><a href="/homee"><i class="fa fa-home"></i></a></li>
+									<li class="home-act"><a href="/homee">Profils</a></li>
+									<li class="home-act"><a href="/homee">Détails Profil</a></li>
+									<li class="active"><%= player.firstname%> <%=player.lastname %></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Product details -->
+					<section class="m-t-lg-30 m-t-xs-0">
+						<div class="row">
+					
+								<!-- Banner -->
+								
+                            </div>
+                            <div style="float: right;width: 40%;" class="col-lg-6">
+                                    <a style="background-color:green" href="/edit/<%= player.id %>" class="ht-btn ht-btn-default m-t-lg-0 "><i class="fa fa-pencil fa-fw"></i>Modifier Profil</a>
+                                    <a href="/delete/<%= player.id %>" onclick="return confirm('Voulez-vous vraiment supprimer ce profil?');" class="ht-btn ht-btn-default pull-right m-t-lg-0"></i><i class="fa fa-trash-o fa-lg"></i>Supprimer Profil</a>
+                                    
+                                </div>
+                            <div>
+                            <h3 class="product-name color1-f"><%= player.firstname%> <%=player.lastname %>
+								
+                                <span class="car-status m-l-lg-10"><%= player.posteactuel %></span>
+                            </h3>
+                        </div>
+                        <br/>
+							<div class="col-sm-8 col-md-9 " style="width: 100%">
+								<div class="product-list product_detail p-lg-30 p-xs-15 bg-gray-fa bg1-gray-15 m-b-lg-50">
+									<div class="row">
+                                       
+                                          
+                                    
+                                
+										<!-- Image Large -->
+										<div class="image-zoom col-md-6 col-lg-6">
+											<div class="product-img-lg p-lg-10 m-b-xs-30 text-center">
+                                                <br/><br/>
+                                                <% if(player.image){ %>
+                                                    <img src="/images/<%= player.image %>" style="width:50%; height:30%" class=" player-img" alt="">
+                                                     <% } else if(player.civilite == 'Masculin') { %>
+                                                        <img src="/images/masc.png" style="width:50%; height:30%" class="rounded-circle player-img" alt="">
+                                                        <% } else if(player.civilite == 'Féminin') { %>
+                                                            <img src="/images/fém.jpg" style="width:50%; height:30%" class="rounded-circle player-img" alt=""> 
+                                                            <% } else  { %>
+                                                                <img src="/images/aucun.jpg" style="width:50%; height:30%" class="rounded-circle player-img" alt="">           
+                                                                <% } %>
+                                                    
+                                                    </a><br/><br/><br/>
+                                                    <h3 class="product-name">INFORMATION PROFESSIONNELLE</h3>
+                                                    <hr/><br/>
+                                                    <p>Spécialité :&nbsp;&nbsp;<strong><%=player.position %> </strong></p>
+                                                    <p>Rénumération :&nbsp;&nbsp;<strong><%=player.renumeration %> </strong></p>
+                                                    <p>Poste Actuel :&nbsp;&nbsp;<strong><%=player.posteactuel %> </strong></p>
+                                                    <p>Niveau Etude :&nbsp;&nbsp;<strong><%=player.nivetude %> </strong></p>
+                                                    <hr/>
+										
+                                                
+											</div>
+										</div>
+										<div class="col-md-6 col-lg-6">
+                                            <!-- Product description -->
+                                            <br/><br/>
+											<h4 class="product-name">INFORMATION PERSONNELLE</h4>
+											<div class="product_para">
+												<hr/>
+												<p>Sexe :&nbsp;&nbsp;<strong><%=player.civilite %> </strong></p>
+												<p>Civilité :&nbsp;&nbsp;<strong><%= player.situation %></strong></p>
+												<p>Nom :&nbsp;&nbsp;<strong><%= player.lastname %> </strong> </p>
+                                                <p>Prénom :&nbsp;&nbsp;<strong><%= player.firstname %> </strong> </p>
+                                                <p>Age :&nbsp;&nbsp;<strong><%= player.age %> </strong> </p>
+                                                <p>Adresse :&nbsp;&nbsp;<strong><%= player.adresse %></strong> </p>
+                                                <p>Ville :&nbsp;&nbsp;<strong><%= player.ville %></strong> </p>
+                                                <p>Code Postal :&nbsp;&nbsp;<strong><%= player.codepostal %></strong> </p>
+                                                <p>Numéro de Téléphone :&nbsp;&nbsp;<strong><%= player.numtel %></strong> </p>
+                                                <p>Email :&nbsp;&nbsp;<strong><%= player.email %></strong> </p>
+                                               
+												<hr/>
+												
+                                            </div>
+                                            <div class="product_para">
+                                                    <h4 class="product-name">FICHIERS</h4>
+                                                    <hr/>
+                                                        <%  if(player.fileWord) { %>
+                                                    <p>CV sous Format WORD:&nbsp;&nbsp;<strong><a href="/file/<%= player.fileWord %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""></a><img style="width:40px; height: 40px" src="/images/word.png"/></strong></p>
+                                                        <% }if(player.filePDF){ %>
+                                                    <p>CV sous Format PDF :&nbsp;&nbsp;<strong><a href="/file/<%= player.filePDF %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></strong></p>
+                                                        <% } %>
+                                                    <p>
+                                                        DDC :&nbsp;&nbsp;
+                                                        <% if(player.fileDDC){ %>
+                                                            <% if( (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length) =='docx' ||  (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length)  =='doc') { %>
+                                                        <a href="/file/<%= player.fileDDC %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></a></td>
+                                                            <% }else if( (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length) =='pdf'){ %>
+                                                                <a href="/file/<%= player.fileDDC %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></td>
+                                                            <% } else if( (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length) =='png' || (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length) =='jpg' || (player.fileDDC).substr((player.fileDDC).search('[.]')+1,(player.fileDDC).length) =='jpeg'){ %>
+                                                                <a href="/file/<%= player.fileDDC %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/image.png"/></a></td>
+                                                            <% } %>
+                                                            
+                                                        <% }else { %>
+                                                                - <% } %>
+                                                        </strong></p>
+                                                    <p>
+                                                            Autres(Fichiers 1) :&nbsp;&nbsp;
+                                                            <% if(player.filePLUS1){ %>
+                                                                <% if( (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length) =='docx' ||  (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length)  =='doc') { %>
+                                                            <a href="/file/<%= player.filePLUS1 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></a></td>
+                                                                <% }else if( (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length) =='pdf'){ %>
+                                                                    <a href="/file/<%= player.filePLUS1 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></td>
+                                                                <% } else if( (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length) =='png' || (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length) =='jpg' || (player.filePLUS1).substr((player.filePLUS1).search('[.]')+1,(player.filePLUS1).length) =='jpeg'){ %>
+                                                                    <a href="/file/<%= player.filePLUS1 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/image.png"/></a></td>
+                                                                <% } %>
+                                                                
+                                                            <% }else { %>
+                                                                    - <% } %>
+                                                            </strong>  </p>
+                                                            <p>
+                                                                    Autres(Fichiers 2) :&nbsp;&nbsp;
+                                                                    <% if(player.filePLUS2){ %>
+                                                                        <% if( (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length) =='docx' ||  (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length)  =='doc') { %>
+                                                                    <a href="/file/<%= player.filePLUS2 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></a></td>
+                                                                        <% }else if( (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length) =='pdf'){ %>
+                                                                            <a href="/file/<%= player.filePLUS2 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/pdf.png"/></a></td>
+                                                                        <% } else if( (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length) =='png' || (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length) =='jpg' || (player.filePLUS2).substr((player.filePLUS2).search('[.]')+1,(player.filePLUS2).length) =='jpeg'){ %>
+                                                                            <a href="/file/<%= player.filePLUS2 %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/image.png"/></a></td>
+                                                                        <% } %>
+                                                                        
+                                                                    <% }else { %>
+                                                                            - <% } %>
+                                                                    </strong>  </p>
+
+                                                    <hr/>
+                                                    
+                                                </div>
+										</div>
+									</div>
+								</div>
+								<!-- Product description tabs -->
+								
+					
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+        <% include partials/footer.ejs %>
+    </div>
+    <% }else { %>
+    <!-- jQuery -->
+   halloo
+   <% } %>
+ <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+ <!-- JqueryUI -->
+ <script src="/js/jquery/jquery-ui.js"></script>
+ <!-- Bootstrap -->
+ <script src="/js/bootstrap/bootstrap.min.js"></script>
+ <!--magnific popup-->
+ <script src="/js/magnific-popup/jquery.magnific-popup.min.js"></script>
+ <!-- Jquery.counterup -->
+ <script src="/js/jquery.counterup/waypoints.min.js"></script>
+ <script src="/js/jquery.counterup/jquery.counterup.min.js"></script>
+ <!-- Owl-coursel -->
+ <script src="/js/owl-coursel/owl.carousel.js"></script>
+ <!-- Script -->
+ <script src="/js/script.js"></script>
+</body>
+
+</html>

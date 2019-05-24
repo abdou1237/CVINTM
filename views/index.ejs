@@ -151,7 +151,7 @@
                             <td><%= player.position %></td>
                             <td><%= player.experience %></td>
                             <td><%= moment(player.createdAt).format('Do MMMM, YYYY') %>-<%= moment(player.createdAt).format("HH:mm") %></td>
-                            <td><%= user[0].username %></td>
+                            <td><%= player.username %></td>
                             <td>
                                     <% if(player.fileWord){ %>
                                 <a href="/file/<%= player.fileWord %>" target="_blank" rel="noopener" class="rounded-circle player-img" alt=""><img style="width:40px; height: 40px" src="/images/word.png"/></a>
