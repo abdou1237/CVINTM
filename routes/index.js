@@ -5,6 +5,7 @@ var pghstore=require('pg-hstore');
 const profilController = require('../controllers').profil;
 const accountController = require('../controllers').account;
 const commentaireController= require('../controllers').commentaire;
+const ticketController=require('../controllers').ticket;
 const auth=require('../controllers').authentication;
 const email=require('../controllers').email;
 const offreController=require('../controllers').offre;
@@ -55,9 +56,18 @@ router.get('/deconnexion',sessionChecker, accountController.deconnexion);
 router.get('/adde',sessionChecker,accountController.addPage);
 router.post('/adde',accountController.add);
 router.get('/contact',sessionChecker,accountController.contactPage);
-router.get('/contactdemandeur',sessionChecker,accountController.contactPage);
+router.get('/contactdemandeur',sessionChecker,accountController.contactPageDemandeur);
+router.get('/contactadmin',sessionChecker,accountController.contactPageAdmin);
 router.get('/propos',sessionChecker,accountController.proposPageDemandeur);
 router.get('/proposdemandeur',sessionChecker,accountController.proposPageDemandeur);
+router.get('/proposadmin',sessionChecker,accountController.proposPageAdmin);
+//router.get('/ticket',accountController.ticketPage);
+
+
+router.get('/ticket',ticketController.list);
+router.get('/recruteur',ticketController.listrecruteur);
+router.get('/ajouterrecruteur', ticketController.affichaddrecruteur);
+
 
 router.post('/addText', sessionChecker,commentaireController.addT);
 //router.get('/editCom/:id',commentaireController.editPageComment);
@@ -68,6 +78,7 @@ router.post('/updateComment', sessionChecker,commentaireController.updateComment
 //OFFRE
 router.get('/offre',  offreController.list);
 router.post('/addoffre', offreController.addT);
+
 //router.get('/detailsdemandeur/:id', offreController.DetailsPlayer);
 router.get('/affichprofil',offreController.DetailsOffre);
 router.post('/editoffre/:id',  offreController.updateOffre);

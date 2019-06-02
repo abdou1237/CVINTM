@@ -131,6 +131,8 @@ module.exports = {
               req.session.user.logged=true
               if(accounts[0].etat == 0){
                 res.redirect('/homee');
+              }else if(accounts[0].etat == 2){
+                res.redirect('/ticket');
               }else{
                 res.redirect('/home');
               }
@@ -178,6 +180,13 @@ proposPageDemandeur (req, res){
   });
 },
 
+proposPageAdmin (req, res){
+  res.render('proposadmin.ejs', {
+      title: "Welcome to Socka | Add a new player"
+      ,message: ''
+  });
+},
+
 contactPage (req, res){
   res.render('contact.ejs', {
       title: "Welcome to Socka | Add a new player"
@@ -187,6 +196,19 @@ contactPage (req, res){
 
 contactPageDemandeur (req, res){
   res.render('contactdemandeur.ejs', {
+      title: "Welcome to Socka | Add a new player"
+      ,message: ''
+  });
+},
+contactPageAdmin (req, res){
+  res.render('contactadmin.ejs', {
+      title: "Welcome to Socka | Add a new player"
+      ,message: ''
+  });
+},
+
+ticketPage (req, res){
+  res.render('Ticket.ejs', {
       title: "Welcome to Socka | Add a new player"
       ,message: ''
   });

@@ -16,6 +16,7 @@ module.exports = {
                 title: "Welcome to Socka | View Players"
                 ,players: offre 
             });
+            //res.status(200).send(offre);
         })
       .catch((error) => res.status(400).send(error));
       },

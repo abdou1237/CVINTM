@@ -4,6 +4,7 @@ const commentaire = require('./commentaire');
 const authentication= require('./authentication');
 const email= require('./email');
 const offre=require('./offre');
+const ticket=require('./ticket');
 
 module.exports = {
   profil,
@@ -12,4 +13,5 @@ module.exports = {
   authentication,
   email,
   offre,
+  ticket,
 };
