@@ -37,7 +37,7 @@
     "sequelize-auto-migrations": "^1.0.3",
     "uipath-orchestrator": "^1.0.3",
     "util": "^0.12.0",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter"
